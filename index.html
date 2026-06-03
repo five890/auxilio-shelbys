@@ -4,68 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Shelbys Auxílio Ultra</title>
+
 <style>
-  /* Bloqueia zoom e mantém tema preto estilo Netflix */
-  body {
+body {
     margin: 0;
-    font-family: Arial, sans-serif;
     background: #000;
     color: #fff;
-    overflow-x: hidden;
-  }
-
-  /* Login */
-  #loginBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-family: Arial;
     height: 100vh;
-  }
-  #loginBox input {
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-  }
-  #loginBox button {
-    padding: 10px 20px;
-    background: #0ff;
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+    overflow: hidden;
+}
 
-  /* Painel */
-  #panel.hidden { display: none; }
-  #panel {
-    padding: 20px;
-  }
-  .panel-option {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  .panel-option input {
-    margin-right: 10px;
-  }
-  #activateButton {
-    padding: 15px 20px;
-    background: #0f0;
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
+/* LOGIN */
+#loginBox {
+    background: rgba(17,17,17,0.95);
+    padding: 40px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 0 25px #0ff;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loginBox h1 {
+    color: #0ff;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+#loginBox input {
     width: 100%;
-    max-width: 300px;
-  }
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #0ff;
+    border-radius: 6px;
+    background: #000;
+    color: #fff;
+    outline: none;
+}
 
-  /* Aviso */
-  #aviso {
+#loginBox button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #0ff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* AVISO */
+#aviso {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.95);
@@ -73,104 +67,159 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
-  .aviso-box {
+}
+
+.aviso-box {
     background: #111;
     padding: 25px;
     width: 300px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 20px #0ff;
-  }
-  .aviso-box a {
-    background:#25D366;
-    padding:10px 15px;
-    color:#fff;
-    border-radius:5px;
-    text-decoration:none;
-    display:inline-block;
-    margin-top:10px;
-  }
+}
 
-  /* Animação "Injetando" */
-  #injecting {
+.aviso-box a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* PAINEL */
+#panel {
+    background: rgba(17,17,17,0.95);
+    padding: 30px;
+    border-radius: 12px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 0 25px #0ff;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.panel-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 0;
+    gap: 10px;
+}
+
+.panel-option label {
+    cursor: pointer;
+}
+
+/* BOTÃO */
+#btnAtivar {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: #0f0;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* INJETANDO */
+#inject {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.95);
-    color: #0ff;
-    font-size: 30px;
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9998;
-  }
+    color: #0ff;
+    font-size: 28px;
+    font-weight: bold;
+    z-index: 9999;
+    flex-direction: column;
+}
 </style>
 </head>
-<body>
 
-<!-- AVISO -->
-<div id="aviso">
-  <div class="aviso-box">
-    <p>Se você não comprou na loja oficial da Shelby's, denuncie no WhatsApp abaixo o vendedor.</p>
-    <a href="https://wa.me/5515996945451" target="_blank">WhatsApp</a>
-  </div>
-</div>
+<body>
 
 <!-- LOGIN -->
 <div id="loginBox">
-  <h1>Shelbys Auxílio Ultra</h1>
-  <input type="text" id="user" placeholder="Usuário">
-  <input type="password" id="pass" placeholder="Senha">
-  <button onclick="login()">Entrar</button>
+    <h1>Shelbys Ultra</h1>
+    <input id="user" placeholder="Usuário">
+    <input id="pass" type="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+</div>
+
+<!-- AVISO -->
+<div id="aviso">
+    <div class="aviso-box">
+        <p>Se você não comprou na loja oficial da Shelby's, denuncie no WhatsApp abaixo.</p>
+        <a href="https://wa.me/5515996945451" target="_blank">WhatsApp</a>
+    </div>
 </div>
 
 <!-- PAINEL -->
-<div id="panel" class="hidden">
-  <div class="panel-option"><input type="checkbox" id="fps"> <label for="fps">Otimização de FPS</label></div>
-  <div class="panel-option"><input type="checkbox" id="recoil"> <label for="recoil">Anti Recuo</label></div>
-  <div class="panel-option"><input type="checkbox" id="firstShot"> <label for="firstShot">Primeiro Tiro Capa</label></div>
-  <div class="panel-option"><input type="checkbox" id="blacklist"> <label for="blacklist">Anti Black List</label></div>
-  <div class="panel-option"><input type="checkbox" id="ban"> <label for="ban">Anti Ban</label></div>
-  <div class="panel-option"><input type="checkbox" id="bypass"> <label for="bypass">Bypass</label></div>
-  <button id="activateButton" onclick="activateFF()">Ativar no Free Fire</button>
+<div id="panel">
+    <h2>Painel de Funções</h2>
+
+    <div class="panel-option"><input type="checkbox"><label>Otimização FPS</label></div>
+    <div class="panel-option"><input type="checkbox"><label>Anti Recuo</label></div>
+    <div class="panel-option"><input type="checkbox"><label>Primeiro Tiro Capa</label></div>
+    <div class="panel-option"><input type="checkbox"><label>Anti Black List</label></div>
+    <div class="panel-option"><input type="checkbox"><label>Anti Ban</label></div>
+    <div class="panel-option"><input type="checkbox"><label>Bypass</label></div>
+
+    <button id="btnAtivar" onclick="inject()">Ativar no Free Fire</button>
 </div>
 
 <!-- INJETANDO -->
-<div id="injecting">Injetando...</div>
+<div id="inject">INJETANDO...</div>
 
 <script>
-  const USER = "shelby";
-  const PASS = "1234";
 
-  function login() {
-    const u = document.getElementById("user").value;
-    const p = document.getElementById("pass").value;
+const USER = "shelby";
+const PASS = "1234";
+
+function login() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
 
     if(u === USER && p === PASS){
-      // Mostra aviso
-      const aviso = document.getElementById("aviso");
-      aviso.style.display = "flex";
 
-      setTimeout(() => {
-        aviso.style.display = "none";
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("panel").classList.remove("hidden");
-      }, 5000);
+        document.getElementById("aviso").style.display = "flex";
+
+        setTimeout(() => {
+            document.getElementById("aviso").style.display = "none";
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("panel").style.display = "block";
+        }, 5000);
 
     } else {
-      alert("Login inválido!");
+        alert("Login inválido!");
     }
-  }
+}
 
-  function activateFF() {
-    const injecting = document.getElementById("injecting");
-    injecting.style.display = "flex";
+function inject() {
+    document.getElementById("panel").style.display = "none";
+    document.getElementById("inject").style.display = "flex";
 
     setTimeout(() => {
-      injecting.style.display = "none";
-      alert("Ativação simulada finalizada!");
-    }, 5000);
-  }
+        document.getElementById("inject").innerHTML = "TUDO INJETADO, APROVEITE";
+
+        setTimeout(() => {
+            document.getElementById("inject").style.display = "none";
+            document.getElementById("inject").innerHTML = "INJETANDO...";
+            document.getElementById("panel").style.display = "block";
+        }, 2000);
+
+    }, 3000);
+}
+
 </script>
 
 </body>
