@@ -183,7 +183,7 @@ body {
     <div class="options">
         <label><input type="checkbox"> Otimização FPS</label>
         <label><input type="checkbox"> Anti Recuo</label>
-        <label><input type="checkbox"> Primeiro Tiro Capa</label>
+        <label><input type="checkbox"> Primeiros tiros Capa</label>
         <label><input type="checkbox"> Anti Black List</label>
         <label><input type="checkbox"> Anti Ban</label>
         <label><input type="checkbox"> Bypass</label>
@@ -203,27 +203,34 @@ body {
 
 <script>
 
-const USER = "shelby";
-const PASS = "1234";
+const USER = "Murillo";
+const PASS = "300530";
 
 function login() {
     let u = document.getElementById("user").value;
     let p = document.getElementById("pass").value;
 
-    if(u === USER && p === PASS){
+    const valido = usuarios.find(
+        usuario => usuario.user === u && usuario.pass === p
+    );
+
+    if (valido) {
 
         const aviso = document.getElementById("aviso");
         aviso.style.display = "flex";
 
         let tempo = 5;
 
-        document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
+        document.getElementById("timerText").innerText =
+            "Aguarde " + tempo + " segundos...";
 
         const interval = setInterval(() => {
             tempo--;
-            document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
 
-            if(tempo <= 0){
+            document.getElementById("timerText").innerText =
+                "Aguarde " + tempo + " segundos...";
+
+            if (tempo <= 0) {
                 clearInterval(interval);
                 aviso.style.display = "none";
                 document.getElementById("loginBox").style.display = "none";
@@ -232,8 +239,9 @@ function login() {
         }, 1000);
 
     } else {
-        alert("Login inválido!");
+        alert("Usuário ou senha inválidos!");
     }
+}
 }
 
 function inject() {
