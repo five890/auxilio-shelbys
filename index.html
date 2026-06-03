@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shelbys Auxílio Ultra</title>
+  <style>
+    /* Reset e estilo geral */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
+    body { background-color: #000; color: #fff; display:flex; justify-content:center; align-items:center; height:100vh; }
+    .container { width: 400px; background-color: #111; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px #0ff; }
+    
+    /* Login */
+    #login { display: block; }
+    #login input { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:none; }
+    #login button { width:100%; padding:10px; margin-top:10px; background:#0ff; border:none; color:#000; font-weight:bold; cursor:pointer; border-radius:5px; transition:0.3s; }
+    #login button:hover { background:#0aa; }
 
+    /* Painel */
+    #painel { display:none; flex-direction:column; }
+    .option { display:flex; align-items:center; margin:5px 0; }
+    .option input { margin-right:10px; }
+    #ativar-btn { margin-top:20px; padding:15px; background:#0ff; color:#000; font-weight:bold; border:none; cursor:pointer; border-radius:5px; transition:0.3s; }
+    #ativar-btn:hover { background:#0aa; }
+
+    /* Tela injetando */
+    #injetando { display:none; flex-direction:column; justify-content:center; align-items:center; }
+    #injetando p { font-size:24px; font-weight:bold; color:#0ff; margin-bottom:20px; }
+    .loader { border: 5px solid #111; border-top: 5px solid #0ff; border-radius:50%; width:50px; height:50px; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LOGIN -->
+    <div id="login">
+      <h2 style="text-align:center; margin-bottom:20px;">Shelbys Auxílio Ultra</h2>
+      <input type="text" id="username" placeholder="Usuário">
+      <input type="password" id="password" placeholder="Senha">
+      <button onclick="fazerLogin()">Entrar</button>
+      <p id="login-error" style="color:red; display:none; text-align:center;">Usuário ou senha incorretos</p>
+    </div>
+
+    <!-- PAINEL -->
+    <div id="painel">
+      <h2 style="text-align:center; margin-bottom:15px;">Painel de Controle</h2>
+      <div class="option"><input type="checkbox" id="fps"> <label for="fps">Otimização de FPS</label></div>
+      <div class="option"><input type="checkbox" id="anti-recuo"> <label for="anti-recuo">Anti Recuo</label></div>
+      <div class="option"><input type="checkbox" id="primeiro-tiro"> <label for="primeiro-tiro">Primeiro Tiro Capa</label></div>
+      <div class="option"><input type="checkbox" id="anti-blacklist"> <label for="anti-blacklist">Anti Black List</label></div>
+      <div class="option"><input type="checkbox" id="anti-ban"> <label for="anti-ban">Anti Ban</label></div>
+      <div class="option"><input type="checkbox" id="bypass"> <label for="bypass">Bypass</label></div>
+      <button id="ativar-btn" onclick="ativar()">Ativar Free Fire</button>
+    </div>
+
+    <!-- INJETANDO -->
+    <div id="injetando">
+      <p>INJETANDO...</p>
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <script>
+    // Usuário e senha simulados
+    const USER = "usuario1";
+    const PASS = "senha123";
+
+    function fazerLogin() {
+      const u = document.getElementById("username").value;
+      const p = document.getElementById("password").value;
+      if(u === USER && p === PASS) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("painel").style.display = "flex";
+      } else {
+        document.getElementById("login-error").style.display = "block";
+      }
+    }
+
+    function ativar() {
+      document.getElementById("painel").style.display = "none";
+      document.getElementById("injetando").style.display = "flex";
+
+      // Depois de 5 segundos, volta para painel e mostra "ativado"
+      setTimeout(() => {
+        document.getElementById("injetando").style.display = "none";
+        document.getElementById("painel").style.display = "flex";
+        alert("Funções ativadas com sucesso! (simulado)");
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
