@@ -10,7 +10,7 @@ body {
     margin: 0;
     background: #000;
     color: #fff;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     height: 100vh;
     overflow: hidden;
 }
@@ -23,7 +23,6 @@ body {
     width: 320px;
     text-align: center;
     box-shadow: 0 0 25px #0ff;
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -96,7 +95,6 @@ body {
     width: 380px;
     text-align: center;
     box-shadow: 0 0 25px #0ff;
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -104,7 +102,7 @@ body {
     display: none;
 }
 
-/* 🔥 OPÇÕES ORGANIZADAS */
+/* OPÇÕES ORGANIZADAS */
 .options {
     display: flex;
     flex-direction: column;
@@ -161,7 +159,7 @@ body {
 
 <!-- LOGIN -->
 <div id="loginBox">
-    <h1>Shelbys Ultra</h1>
+    <h1>Shelbys Auxílio Ultra</h1>
     <input id="user" placeholder="Usuário">
     <input id="pass" type="password" placeholder="Senha">
     <button onclick="login()">Entrar</button>
@@ -183,7 +181,7 @@ body {
     <div class="options">
         <label><input type="checkbox"> Otimização FPS</label>
         <label><input type="checkbox"> Anti Recuo</label>
-        <label><input type="checkbox"> Primeiros tiros Capa</label>
+        <label><input type="checkbox"> Primeiro Tiro Capa</label>
         <label><input type="checkbox"> Anti Black List</label>
         <label><input type="checkbox"> Anti Ban</label>
         <label><input type="checkbox"> Bypass</label>
@@ -202,38 +200,28 @@ body {
 <div id="inject">INJETANDO...</div>
 
 <script>
-
 const usuarios = [
     { user: "Gabriel", pass: "Frazao" },
-    { user: "murillo", pass: "." },
-    { user: "cliente1", pass: "." },
-    { user: "cliente2", pass: "." }
+    { user: "murillo", pass: "123" },
+    { user: "cliente1", pass: "abc" },
+    { user: "cliente2", pass: "xyz" }
 ];
 
 function login() {
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
+    const u = document.getElementById("user").value;
+    const p = document.getElementById("pass").value;
 
-    const valido = usuarios.find(
-        usuario => usuario.user === u && usuario.pass === p
-    );
+    const valido = usuarios.find(usuario => usuario.user === u && usuario.pass === p);
 
     if (valido) {
-
+        // MOSTRA AVISO 5 SEGUNDOS
         const aviso = document.getElementById("aviso");
         aviso.style.display = "flex";
-
         let tempo = 5;
-
-        document.getElementById("timerText").innerText =
-            "Aguarde " + tempo + " segundos...";
-
+        document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
         const interval = setInterval(() => {
             tempo--;
-
-            document.getElementById("timerText").innerText =
-                "Aguarde " + tempo + " segundos...";
-
+            document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
             if (tempo <= 0) {
                 clearInterval(interval);
                 aviso.style.display = "none";
@@ -241,11 +229,9 @@ function login() {
                 document.getElementById("panel").style.display = "block";
             }
         }, 1000);
-
     } else {
         alert("Usuário ou senha inválidos!");
     }
-}
 }
 
 function inject() {
@@ -261,10 +247,8 @@ function inject() {
             inject.innerHTML = "INJETANDO...";
             document.getElementById("panel").style.display = "block";
         }, 2000);
-
     }, 3000);
 }
-
 </script>
 
 </body>
