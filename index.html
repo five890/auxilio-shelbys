@@ -104,19 +104,27 @@ body {
     display: none;
 }
 
-.panel-option {
+.options {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.options label {
+    display: flex;
     align-items: center;
-    margin: 12px 0;
+    justify-content: center;
     gap: 10px;
 }
 
-.panel-option label {
-    cursor: pointer;
+.aviso-config {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #0ff;
+    text-align: center;
 }
 
-/* BOTÃO */
 #btnAtivar {
     width: 100%;
     padding: 15px;
@@ -160,6 +168,7 @@ body {
     <div class="aviso-box">
         <p>Se você não comprou na loja oficial da Shelby's, denuncie no WhatsApp abaixo.</p>
         <a href="https://wa.me/5515996945451" target="_blank">WhatsApp</a>
+        <p id="timerText" style="margin-top:10px;color:#0ff;">Aguarde 5 segundos...</p>
     </div>
 </div>
 
@@ -167,12 +176,20 @@ body {
 <div id="panel">
     <h2>Painel de Funções</h2>
 
-    <div class="panel-option"><input type="checkbox"><label>Otimização FPS</label></div>
-    <div class="panel-option"><input type="checkbox"><label>Anti Recuo</label></div>
-    <div class="panel-option"><input type="checkbox"><label>Primeiro Tiro Capa</label></div>
-    <div class="panel-option"><input type="checkbox"><label>Anti Black List</label></div>
-    <div class="panel-option"><input type="checkbox"><label>Anti Ban</label></div>
-    <div class="panel-option"><input type="checkbox"><label>Bypass</label></div>
+    <div class="options">
+        <label><input type="checkbox"> Otimização FPS</label>
+        <label><input type="checkbox"> Anti Recuo</label>
+        <label><input type="checkbox"> Primeiro Tiro Capa</label>
+        <label><input type="checkbox"> Anti Black List</label>
+        <label><input type="checkbox"> Anti Ban</label>
+        <label><input type="checkbox"> Bypass</label>
+    </div>
+
+    <div class="aviso-config">
+        ⚠ Recomendação:<br>
+        • Geral acima de <b>100</b><br>
+        • Botão de tiro entre <b>40 e 45</b>
+    </div>
 
     <button id="btnAtivar" onclick="inject()">Ativar no Free Fire</button>
 </div>
@@ -191,13 +208,24 @@ function login() {
 
     if(u === USER && p === PASS){
 
-        document.getElementById("aviso").style.display = "flex";
+        const aviso = document.getElementById("aviso");
+        aviso.style.display = "flex";
 
-        setTimeout(() => {
-            document.getElementById("aviso").style.display = "none";
-            document.getElementById("loginBox").style.display = "none";
-            document.getElementById("panel").style.display = "block";
-        }, 5000);
+        let tempo = 5;
+
+        document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
+
+        const interval = setInterval(() => {
+            tempo--;
+            document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
+
+            if(tempo <= 0){
+                clearInterval(interval);
+                aviso.style.display = "none";
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("panel").style.display = "block";
+            }
+        }, 1000);
 
     } else {
         alert("Login inválido!");
@@ -206,14 +234,15 @@ function login() {
 
 function inject() {
     document.getElementById("panel").style.display = "none";
-    document.getElementById("inject").style.display = "flex";
+    const inject = document.getElementById("inject");
+    inject.style.display = "flex";
 
     setTimeout(() => {
-        document.getElementById("inject").innerHTML = "TUDO INJETADO, APROVEITE";
+        inject.innerHTML = "TUDO INJETADO, APROVEITE";
 
         setTimeout(() => {
-            document.getElementById("inject").style.display = "none";
-            document.getElementById("inject").innerHTML = "INJETANDO...";
+            inject.style.display = "none";
+            inject.innerHTML = "INJETANDO...";
             document.getElementById("panel").style.display = "block";
         }, 2000);
 
