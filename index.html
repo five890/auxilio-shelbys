@@ -203,8 +203,12 @@ body {
 
 <script>
 
-const USER = "Murillo";
-const PASS = "300530";
+const usuarios = [
+    { user: ".", pass: "1" },
+    { user: "murillo", pass: "." },
+    { user: "cliente1", pass: "." },
+    { user: "cliente2", pass: "." }
+];
 
 function login() {
     let u = document.getElementById("user").value;
