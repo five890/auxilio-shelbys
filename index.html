@@ -2,66 +2,202 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Shelbys Auxílio Ultra</title>
 
 <style>
-body{
-    margin:0;
-    background:#000;
-    color:#fff;
-    font-family:Arial,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.box{
-    width:320px;
-    background:#111;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 0 20px cyan;
+/* LOGIN */
+#loginBox {
+    background: rgba(17,17,17,0.95);
+    padding: 40px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 0 25px #0ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-input{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    box-sizing:border-box;
+#loginBox h1 {
+    color: #0ff;
+    margin-bottom: 20px;
+    font-size: 22px;
 }
 
-button{
-    width:100%;
-    padding:10px;
-    cursor:pointer;
+#loginBox input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #0ff;
+    border-radius: 6px;
+    background: #000;
+    color: #fff;
+    outline: none;
 }
 
-#panel{
-    display:none;
+#loginBox button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #0ff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* AVISO */
+#aviso {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.aviso-box {
+    background: #111;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0ff;
+}
+
+.aviso-box a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* PAINEL */
+#panel {
+    background: rgba(17,17,17,0.95);
+    padding: 30px;
+    border-radius: 12px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 0 25px #0ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* OPÇÕES ORGANIZADAS */
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+/* AVISO CONFIG */
+.aviso-config {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #0ff;
+    text-align: center;
+}
+
+/* BOTÃO */
+#btnAtivar {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: #0f0;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* INJETANDO */
+#inject {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #0ff;
+    font-size: 28px;
+    font-weight: bold;
+    z-index: 9999;
+    flex-direction: column;
 }
 </style>
 </head>
+
 <body>
 
-<div class="box" id="loginBox">
-    <h2>Login</h2>
-
-    <input type="text" id="user" placeholder="Usuário">
-    <input type="password" id="pass" placeholder="Senha">
-
+<!-- LOGIN -->
+<div id="loginBox">
+    <h1>Shelbys Auxílio Ultra</h1>
+    <input id="user" placeholder="Usuário">
+    <input id="pass" type="password" placeholder="Senha">
     <button onclick="login()">Entrar</button>
 </div>
 
-<div class="box" id="panel">
-    <h2>Painel</h2>
-    <p>Login realizado com sucesso.</p>
-
-    <label><input type="checkbox"> Opção 1</label><br>
-    <label><input type="checkbox"> Opção 2</label><br>
-    <label><input type="checkbox"> Opção 3</label>
+<!-- AVISO -->
+<div id="aviso">
+    <div class="aviso-box">
+        <p>Se você não comprou na loja oficial da Shelby's, denuncie no WhatsApp abaixo.</p>
+        <a href="https://wa.me/5515996945451" target="_blank">WhatsApp</a>
+        <p id="timerText" style="margin-top:10px;color:#0ff;">Aguarde 5 segundos...</p>
+    </div>
 </div>
+
+<!-- PAINEL -->
+<div id="panel">
+    <h2>Painel de Funções</h2>
+
+    <div class="options">
+        <label><input type="checkbox"> Otimização FPS</label>
+        <label><input type="checkbox"> Anti Recuo</label>
+        <label><input type="checkbox"> Primeiro Tiro Capa</label>
+        <label><input type="checkbox"> Anti Black List</label>
+        <label><input type="checkbox"> Anti Ban</label>
+        <label><input type="checkbox"> Bypass</label>
+    </div>
+
+    <div class="aviso-config">
+        ⚠ Recomendação:<br>
+        • Geral acima de <b>100</b><br>
+        • Botão de tiro entre <b>40 e 45</b>
+    </div>
+
+    <button id="btnAtivar" onclick="inject()">Ativar no Free Fire</button>
+</div>
+
+<!-- INJETANDO -->
+<div id="inject">INJETANDO...</div>
 
 <script>
 const usuarios = [
@@ -76,16 +212,43 @@ function login() {
     const u = document.getElementById("user").value;
     const p = document.getElementById("pass").value;
 
-    const valido = usuarios.find(
-        usuario => usuario.user === u && usuario.pass === p
-    );
+    const valido = usuarios.find(usuario => usuario.user === u && usuario.pass === p);
 
     if (valido) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("panel").style.display = "block";
+        // MOSTRA AVISO 5 SEGUNDOS
+        const aviso = document.getElementById("aviso");
+        aviso.style.display = "flex";
+        let tempo = 5;
+        document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
+        const interval = setInterval(() => {
+            tempo--;
+            document.getElementById("timerText").innerText = "Aguarde " + tempo + " segundos...";
+            if (tempo <= 0) {
+                clearInterval(interval);
+                aviso.style.display = "none";
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("panel").style.display = "block";
+            }
+        }, 1000);
     } else {
         alert("Usuário ou senha inválidos!");
     }
+}
+
+function inject() {
+    document.getElementById("panel").style.display = "none";
+    const inject = document.getElementById("inject");
+    inject.style.display = "flex";
+
+    setTimeout(() => {
+        inject.innerHTML = "TUDO INJETADO, APROVEITE";
+
+        setTimeout(() => {
+            inject.style.display = "none";
+            inject.innerHTML = "INJETANDO...";
+            document.getElementById("panel").style.display = "block";
+        }, 2000);
+    }, 3000);
 }
 </script>
 
